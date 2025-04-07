@@ -21,19 +21,6 @@ func NewResourceRepo(data *Data, logger log.Logger) biz.ResourceRepo {
 	}
 }
 
-// 新增文档结构体
-type Info struct {
-	Cnname string `bson:"cnname"`
-}
-
-type TData struct {
-	Info Info `bson:"info"`
-}
-
-type ResourceModel struct {
-	Data TData `bson:"data"`
-}
-
 func (r *resourceRepo) ListTopByArea(ctx context.Context, filter interface{}) (*[]biz.Resource, error) {
 	opts := options.Find().
 		SetProjection(bson.D{{"_id", 0}, {"data.info", 1}}).
