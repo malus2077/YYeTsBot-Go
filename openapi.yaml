@@ -3,15 +3,25 @@
 
 openapi: 3.0.3
 info:
-    title: Greeter API
-    description: The greeting service definition.
+    title: ""
     version: 0.0.1
 paths:
+    /api/top:
+        get:
+            tags:
+                - Resource
+            operationId: Resource_TopResource
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.yyets.v1.TopResourceReply'
     /helloworld/{name}:
         get:
             tags:
                 - Greeter
-                - subgroup
             description: Sends a greeting
             operationId: Greeter_SayHello
             parameters:
@@ -29,6 +39,65 @@ paths:
                                 $ref: '#/components/schemas/helloworld.v1.HelloReply'
 components:
     schemas:
+        api.yyets.v1.ResourceData:
+            type: object
+            properties:
+                info:
+                    $ref: '#/components/schemas/api.yyets.v1.ResourceDataInfo'
+        api.yyets.v1.ResourceDataInfo:
+            type: object
+            properties:
+                id:
+                    type: string
+                cnname:
+                    type: string
+                enname:
+                    type: string
+                aliasname:
+                    type: string
+                channel:
+                    type: string
+                channelCn:
+                    type: string
+                area:
+                    type: string
+                showType:
+                    type: string
+                expire:
+                    type: string
+                views:
+                    type: string
+                year:
+                    type: array
+                    items:
+                        type: string
+        api.yyets.v1.TopResourceReply:
+            type: object
+            properties:
+                All:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceData'
+                US:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceData'
+                JP:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceData'
+                KR:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceData'
+                UK:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceData'
+                Class:
+                    type: object
+                    additionalProperties:
+                        type: string
         helloworld.v1.HelloReply:
             type: object
             properties:
@@ -37,3 +106,5 @@ components:
             description: The response message containing the greetings
 tags:
     - name: Greeter
+      description: The greeting service definition.
+    - name: Resource

@@ -2,6 +2,8 @@ package server
 
 import (
 	v1 "YYeTsBot-Go/api/helloworld/v1"
+	ets "YYeTsBot-Go/api/yyets/v1"
+
 	"YYeTsBot-Go/internal/conf"
 	"YYeTsBot-Go/internal/service"
 
@@ -11,7 +13,7 @@ import (
 )
 
 // NewHTTPServer new an HTTP server.
-func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, logger log.Logger) *http.Server {
+func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, resource *service.ResourceService, logger log.Logger) *http.Server {
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),
@@ -28,5 +30,6 @@ func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, logger log.L
 	}
 	srv := http.NewServer(opts...)
 	v1.RegisterGreeterHTTPServer(srv, greeter)
+	ets.RegisterResourceHTTPServer(srv, resource)
 	return srv
 }

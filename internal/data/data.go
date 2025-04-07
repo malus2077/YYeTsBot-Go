@@ -15,18 +15,18 @@ import (
 )
 
 // ProviderSet is data providers.
-var ProviderSet = wire.NewSet(NewData, NewGreeterRepo)
+var ProviderSet = wire.NewSet(NewData, NewGreeterRepo, NewResourceRepo)
 
 // Data .
 type Data struct {
 	// TODO wrapped database client
-	db          *mongo.Database
-	cacheManger *cache.Cache[string]
+	db           *mongo.Database
+	cacheManager *cache.Cache[string]
 }
 
 // NewData .
 func NewData(c *conf.Data, logger log.Logger) (*Data, func(), error) {
-	log := log.NewHelper(logger)
+	hLog := log.NewHelper(logger)
 	client, err := mongo.Connect(options.Client().ApplyURI(c.Database.Source))
 	if err != nil {
 		return nil, nil, err
@@ -34,19 +34,23 @@ func NewData(c *conf.Data, logger log.Logger) (*Data, func(), error) {
 
 	db := client.Database(c.Database.DbName)
 
+	if err := db.Client().Ping(context.Background(), nil); err == nil {
+		hLog.Infof("Successfully connected to MongoDB!")
+	}
+
 	store := redisStore.NewRedis(redis.NewClient(&redis.Options{
 		Addr:         c.Redis.Addr,
 		ReadTimeout:  c.Redis.ReadTimeout.AsDuration(),
 		WriteTimeout: c.Redis.WriteTimeout.AsDuration(),
 	}))
 
-	cacheManger := cache.New[string](store)
+	cacheManager := cache.New[string](store)
 
 	cleanup := func() {
-		log.Info("closing the data resources")
+		hLog.Info("closing the data resources")
 		if err := client.Disconnect(context.Background()); err != nil {
-			log.Error(err)
+			hLog.Error(err)
 		}
 	}
-	return &Data{db: db, cacheManger: cacheManger}, cleanup, nil
+	return &Data{db: db, cacheManager: cacheManager}, cleanup, nil
 }
