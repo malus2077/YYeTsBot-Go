@@ -3,9 +3,140 @@
 
 openapi: 3.0.3
 info:
-    title: Resource API
+    title: ""
     version: 0.0.1
 paths:
+    /api/adsense:
+        get:
+            tags:
+                - Adsense
+            operationId: Adsense_ListAdsense
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.yyets.v1.ListAdsenseReply'
+    /api/announcement:
+        get:
+            tags:
+                - Announcement
+            operationId: Announcement_ListAnnouncement
+            parameters:
+                - name: size
+                  in: query
+                  schema:
+                    type: string
+                - name: page
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.yyets.v1.ListAnnouncementReply'
+    /api/captcha:
+        get:
+            tags:
+                - Captcha
+            operationId: Captcha_GetCaptcha
+            parameters:
+                - name: id
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.yyets.v1.GetCaptchaReply'
+    /api/comment:
+        get:
+            tags:
+                - Comment
+            operationId: Comment_ListComment
+            parameters:
+                - name: resourceId
+                  in: query
+                  schema:
+                    type: string
+                - name: size
+                  in: query
+                  schema:
+                    type: string
+                - name: page
+                  in: query
+                  schema:
+                    type: string
+                - name: sort
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.yyets.v1.ListCommentReply'
+    /api/comment/newest:
+        get:
+            tags:
+                - Comment
+            operationId: Comment_ListLatestComment
+            parameters:
+                - name: size
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.yyets.v1.ListLatestCommentReply'
+    /api/douban:
+        get:
+            tags:
+                - Douban
+            operationId: Douban_GetDouban
+            parameters:
+                - name: resourceId
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.yyets.v1.GetDoubanReply'
+    /api/metrics:
+        post:
+            tags:
+                - Metrics
+            operationId: Metrics_CreateMetrics
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.yyets.v1.CreateMetricsRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.yyets.v1.CreateMetricsReply'
     /api/resource:
         get:
             tags:
@@ -22,13 +153,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/GetResourceReply'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.yyets.v1.GetResourceReply'
     /api/resource/search:
         get:
             tags:
@@ -49,13 +174,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/SearchResourceReply'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.yyets.v1.SearchResourceReply'
     /api/top:
         get:
             tags:
@@ -67,16 +186,110 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/TopResourceReply'
-                default:
-                    description: Default error response
+                                $ref: '#/components/schemas/api.yyets.v1.TopResourceReply'
+    /helloworld/{name}:
+        get:
+            tags:
+                - Greeter
+            description: Sends a greeting
+            operationId: Greeter_SayHello
+            parameters:
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/helloworld.v1.HelloReply'
 components:
     schemas:
-        GetResourceReply:
+        api.yyets.v1.CommentItem:
+            type: object
+            properties:
+                username:
+                    type: string
+                date:
+                    type: string
+                browser:
+                    type: string
+                content:
+                    type: string
+                resourceId:
+                    type: string
+                type:
+                    type: string
+                id:
+                    type: string
+                group:
+                    type: array
+                    items:
+                        type: string
+                hasAvatar:
+                    type: boolean
+                cnname:
+                    type: string
+        api.yyets.v1.CreateMetricsReply:
+            type: object
+            properties: {}
+        api.yyets.v1.CreateMetricsRequest:
+            type: object
+            properties:
+                id:
+                    type: string
+                type:
+                    type: string
+        api.yyets.v1.GetCaptchaReply:
+            type: object
+            properties:
+                base64:
+                    type: string
+        api.yyets.v1.GetDoubanReply:
+            type: object
+            properties:
+                name:
+                    type: string
+                doubanId:
+                    type: string
+                doubanLink:
+                    type: string
+                posterLink:
+                    type: string
+                resourceId:
+                    type: string
+                rating:
+                    type: string
+                actors:
+                    type: array
+                    items:
+                        type: string
+                directors:
+                    type: array
+                    items:
+                        type: string
+                genre:
+                    type: array
+                    items:
+                        type: string
+                releaseDate:
+                    type: string
+                episodeCount:
+                    type: string
+                episodeDuration:
+                    type: string
+                writers:
+                    type: array
+                    items:
+                        type: string
+                year:
+                    type: string
+                introduction:
+                    type: string
+        api.yyets.v1.GetResourceReply:
             type: object
             properties:
                 id:
@@ -92,16 +305,57 @@ components:
                 views:
                     type: string
                 data:
-                    $ref: '#/components/schemas/ResourceData'
-        GoogleProtobufAny:
+                    $ref: '#/components/schemas/api.yyets.v1.ResourceData'
+        api.yyets.v1.ListAdsenseReply:
             type: object
             properties:
-                '@type':
+                data:
+                    type: array
+                    items:
+                        type: string
+        api.yyets.v1.ListAnnouncementReply:
+            type: object
+            properties:
+                count:
                     type: string
-                    description: The type of the serialized message.
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-        ResourceClass:
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.yyets.v1.ListAnnouncementReplyItem'
+        api.yyets.v1.ListAnnouncementReplyItem:
+            type: object
+            properties:
+                browser:
+                    type: string
+                content:
+                    type: string
+                date:
+                    type: string
+                id:
+                    type: string
+                username:
+                    type: string
+        api.yyets.v1.ListCommentReply:
+            type: object
+            properties:
+                count:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.yyets.v1.CommentItem'
+                resourceId:
+                    type: string
+        api.yyets.v1.ListLatestCommentReply:
+            type: object
+            properties:
+                count:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.yyets.v1.CommentItem'
+        api.yyets.v1.ResourceClass:
             type: object
             properties:
                 ALL:
@@ -116,16 +370,16 @@ components:
                     type: string
                 KR:
                     type: string
-        ResourceData:
+        api.yyets.v1.ResourceData:
             type: object
             properties:
                 info:
-                    $ref: '#/components/schemas/ResourceDataInfo'
+                    $ref: '#/components/schemas/api.yyets.v1.ResourceDataInfo'
                 list:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ResourceSeason'
-        ResourceDataInfo:
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceSeason'
+        api.yyets.v1.ResourceDataInfo:
             type: object
             properties:
                 id:
@@ -152,7 +406,7 @@ components:
                     type: array
                     items:
                         type: string
-        ResourceFile:
+        api.yyets.v1.ResourceFile:
             type: object
             properties:
                 way:
@@ -163,12 +417,12 @@ components:
                     type: string
                 passwd:
                     type: string
-        ResourceItem:
+        api.yyets.v1.ResourceItem:
             type: object
             properties:
                 data:
-                    $ref: '#/components/schemas/ResourceData'
-        ResourceSeason:
+                    $ref: '#/components/schemas/api.yyets.v1.ResourceData'
+        api.yyets.v1.ResourceSeason:
             type: object
             properties:
                 seasonNum:
@@ -178,12 +432,12 @@ components:
                 items:
                     type: object
                     additionalProperties:
-                        $ref: '#/components/schemas/ResourceSeasonList'
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceSeasonList'
                 formats:
                     type: array
                     items:
                         type: string
-        ResourceSeasonItem:
+        api.yyets.v1.ResourceSeasonItem:
             type: object
             properties:
                 itemId:
@@ -201,15 +455,15 @@ components:
                 files:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ResourceFile'
-        ResourceSeasonList:
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceFile'
+        api.yyets.v1.ResourceSeasonList:
             type: object
             properties:
                 items:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ResourceSeasonItem'
-        SearchComment:
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceSeasonItem'
+        api.yyets.v1.SearchComment:
             type: object
             properties:
                 username:
@@ -230,64 +484,62 @@ components:
                     type: boolean
                 hash:
                     type: string
-        SearchResourceReply:
+        api.yyets.v1.SearchResourceReply:
             type: object
             properties:
                 resource:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ResourceDataInfo'
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceDataInfo'
                 comment:
                     type: array
                     items:
-                        $ref: '#/components/schemas/SearchComment'
+                        $ref: '#/components/schemas/api.yyets.v1.SearchComment'
                 subtitle:
                     type: array
                     items:
-                        $ref: '#/components/schemas/SearchSubtitle'
-        SearchSubtitle:
+                        $ref: '#/components/schemas/api.yyets.v1.SearchSubtitle'
+        api.yyets.v1.SearchSubtitle:
             type: object
             properties: {}
-        Status:
-            type: object
-            properties:
-                code:
-                    type: integer
-                    description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
-                    format: int32
-                message:
-                    type: string
-                    description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
-                details:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/GoogleProtobufAny'
-                    description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
-            description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
-        TopResourceReply:
+        api.yyets.v1.TopResourceReply:
             type: object
             properties:
                 ALL:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ResourceItem'
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceItem'
                 US:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ResourceItem'
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceItem'
                 JP:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ResourceItem'
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceItem'
                 KR:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ResourceItem'
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceItem'
                 UK:
                     type: array
                     items:
-                        $ref: '#/components/schemas/ResourceItem'
+                        $ref: '#/components/schemas/api.yyets.v1.ResourceItem'
                 class:
-                    $ref: '#/components/schemas/ResourceClass'
+                    $ref: '#/components/schemas/api.yyets.v1.ResourceClass'
+        helloworld.v1.HelloReply:
+            type: object
+            properties:
+                message:
+                    type: string
+            description: The response message containing the greetings
 tags:
+    - name: Adsense
+    - name: Announcement
+    - name: Captcha
+    - name: Comment
+    - name: Douban
+    - name: Greeter
+      description: The greeting service definition.
+    - name: Metrics
     - name: Resource

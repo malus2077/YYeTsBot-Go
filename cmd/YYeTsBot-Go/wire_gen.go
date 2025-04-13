@@ -45,8 +45,11 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	doubanRepo := data.NewDoubanRepo(dataData, logger)
 	doubanUsecase := biz.NewDoubanUsecase(doubanRepo, resourceRepo, logger)
 	doubanService := service.NewDoubanService(doubanUsecase)
-	grpcServer := server.NewGRPCServer(confServer, greeterService, resourceService, commentService, announcementService, metricsService, adsenseService, doubanService, logger)
-	httpServer := server.NewHTTPServer(confServer, greeterService, resourceService, commentService, announcementService, metricsService, adsenseService, doubanService, logger)
+	captchaRepo := data.NewCaptchaRepo(dataData, logger)
+	captchaUsecase := biz.NewCaptchaUsecase(captchaRepo, logger)
+	captchaService := service.NewCaptchaService(captchaUsecase)
+	grpcServer := server.NewGRPCServer(confServer, greeterService, resourceService, commentService, announcementService, metricsService, adsenseService, doubanService, captchaService, logger)
+	httpServer := server.NewHTTPServer(confServer, greeterService, resourceService, commentService, announcementService, metricsService, adsenseService, doubanService, captchaService, logger)
 	app := newApp(logger, grpcServer, httpServer)
 	return app, func() {
 		cleanup()

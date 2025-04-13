@@ -7,9 +7,13 @@ server:
     timeout: 1s
 data:
   database:
-    driver: mysql
-    source: root:root@tcp(127.0.0.1:3306)/test?parseTime=True&loc=Local
+    driver: mongo
+    db_name: zimuzu
+    # source: mongodb://117.72.37.235:27017
+    # source: mongodb://172.25.1.234:27017/zimuzu
+    source: mongodb://192.168.1.4:27017/zimuzu
   redis:
-    addr: 127.0.0.1:6379
+    addr: 172.25.1.234:6379
+    # addr: 117.72.37.235:6379
     read_timeout: 0.2s
     write_timeout: 0.2s

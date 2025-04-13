@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v5.29.3
-// source: api/yyets/v1/resource.proto
+// source: yyets/v1/resource.proto
 
 package v1
 
@@ -41,7 +41,7 @@ type ResourceDataInfo struct {
 
 func (x *ResourceDataInfo) Reset() {
 	*x = ResourceDataInfo{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[0]
+	mi := &file_yyets_v1_resource_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -53,7 +53,7 @@ func (x *ResourceDataInfo) String() string {
 func (*ResourceDataInfo) ProtoMessage() {}
 
 func (x *ResourceDataInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[0]
+	mi := &file_yyets_v1_resource_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -66,7 +66,7 @@ func (x *ResourceDataInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceDataInfo.ProtoReflect.Descriptor instead.
 func (*ResourceDataInfo) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{0}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ResourceDataInfo) GetId() int64 {
@@ -158,7 +158,7 @@ type ResourceFile struct {
 
 func (x *ResourceFile) Reset() {
 	*x = ResourceFile{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[1]
+	mi := &file_yyets_v1_resource_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -170,7 +170,7 @@ func (x *ResourceFile) String() string {
 func (*ResourceFile) ProtoMessage() {}
 
 func (x *ResourceFile) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[1]
+	mi := &file_yyets_v1_resource_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -183,7 +183,7 @@ func (x *ResourceFile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceFile.ProtoReflect.Descriptor instead.
 func (*ResourceFile) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{1}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ResourceFile) GetWay() string {
@@ -229,7 +229,7 @@ type ResourceSeasonItem struct {
 
 func (x *ResourceSeasonItem) Reset() {
 	*x = ResourceSeasonItem{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[2]
+	mi := &file_yyets_v1_resource_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -241,7 +241,7 @@ func (x *ResourceSeasonItem) String() string {
 func (*ResourceSeasonItem) ProtoMessage() {}
 
 func (x *ResourceSeasonItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[2]
+	mi := &file_yyets_v1_resource_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -254,7 +254,7 @@ func (x *ResourceSeasonItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceSeasonItem.ProtoReflect.Descriptor instead.
 func (*ResourceSeasonItem) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{2}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ResourceSeasonItem) GetItemId() string {
@@ -315,7 +315,7 @@ type ResourceSeasonList struct {
 
 func (x *ResourceSeasonList) Reset() {
 	*x = ResourceSeasonList{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[3]
+	mi := &file_yyets_v1_resource_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -327,7 +327,7 @@ func (x *ResourceSeasonList) String() string {
 func (*ResourceSeasonList) ProtoMessage() {}
 
 func (x *ResourceSeasonList) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[3]
+	mi := &file_yyets_v1_resource_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -340,7 +340,7 @@ func (x *ResourceSeasonList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceSeasonList.ProtoReflect.Descriptor instead.
 func (*ResourceSeasonList) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{3}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ResourceSeasonList) GetItems() []*ResourceSeasonItem {
@@ -362,7 +362,7 @@ type ResourceSeason struct {
 
 func (x *ResourceSeason) Reset() {
 	*x = ResourceSeason{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[4]
+	mi := &file_yyets_v1_resource_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -374,7 +374,7 @@ func (x *ResourceSeason) String() string {
 func (*ResourceSeason) ProtoMessage() {}
 
 func (x *ResourceSeason) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[4]
+	mi := &file_yyets_v1_resource_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -387,7 +387,7 @@ func (x *ResourceSeason) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceSeason.ProtoReflect.Descriptor instead.
 func (*ResourceSeason) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{4}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ResourceSeason) GetSeasonNum() string {
@@ -428,7 +428,7 @@ type ResourceData struct {
 
 func (x *ResourceData) Reset() {
 	*x = ResourceData{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[5]
+	mi := &file_yyets_v1_resource_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -440,7 +440,7 @@ func (x *ResourceData) String() string {
 func (*ResourceData) ProtoMessage() {}
 
 func (x *ResourceData) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[5]
+	mi := &file_yyets_v1_resource_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -453,7 +453,7 @@ func (x *ResourceData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceData.ProtoReflect.Descriptor instead.
 func (*ResourceData) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{5}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ResourceData) GetInfo() *ResourceDataInfo {
@@ -479,7 +479,7 @@ type ResourceItem struct {
 
 func (x *ResourceItem) Reset() {
 	*x = ResourceItem{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[6]
+	mi := &file_yyets_v1_resource_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -491,7 +491,7 @@ func (x *ResourceItem) String() string {
 func (*ResourceItem) ProtoMessage() {}
 
 func (x *ResourceItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[6]
+	mi := &file_yyets_v1_resource_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -504,7 +504,7 @@ func (x *ResourceItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceItem.ProtoReflect.Descriptor instead.
 func (*ResourceItem) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{6}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ResourceItem) GetData() *ResourceData {
@@ -527,7 +527,7 @@ type ResourceClass struct {
 
 func (x *ResourceClass) Reset() {
 	*x = ResourceClass{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[7]
+	mi := &file_yyets_v1_resource_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -539,7 +539,7 @@ func (x *ResourceClass) String() string {
 func (*ResourceClass) ProtoMessage() {}
 
 func (x *ResourceClass) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[7]
+	mi := &file_yyets_v1_resource_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -552,7 +552,7 @@ func (x *ResourceClass) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceClass.ProtoReflect.Descriptor instead.
 func (*ResourceClass) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{7}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ResourceClass) GetALL() map[string]string {
@@ -598,7 +598,7 @@ type TopResourceRequest struct {
 
 func (x *TopResourceRequest) Reset() {
 	*x = TopResourceRequest{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[8]
+	mi := &file_yyets_v1_resource_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -610,7 +610,7 @@ func (x *TopResourceRequest) String() string {
 func (*TopResourceRequest) ProtoMessage() {}
 
 func (x *TopResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[8]
+	mi := &file_yyets_v1_resource_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -623,7 +623,7 @@ func (x *TopResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TopResourceRequest.ProtoReflect.Descriptor instead.
 func (*TopResourceRequest) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{8}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{8}
 }
 
 type TopResourceReply struct {
@@ -640,7 +640,7 @@ type TopResourceReply struct {
 
 func (x *TopResourceReply) Reset() {
 	*x = TopResourceReply{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[9]
+	mi := &file_yyets_v1_resource_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -652,7 +652,7 @@ func (x *TopResourceReply) String() string {
 func (*TopResourceReply) ProtoMessage() {}
 
 func (x *TopResourceReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[9]
+	mi := &file_yyets_v1_resource_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -665,7 +665,7 @@ func (x *TopResourceReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TopResourceReply.ProtoReflect.Descriptor instead.
 func (*TopResourceReply) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{9}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *TopResourceReply) GetALL() []*ResourceItem {
@@ -718,7 +718,7 @@ type CreateResourceRequest struct {
 
 func (x *CreateResourceRequest) Reset() {
 	*x = CreateResourceRequest{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[10]
+	mi := &file_yyets_v1_resource_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -730,7 +730,7 @@ func (x *CreateResourceRequest) String() string {
 func (*CreateResourceRequest) ProtoMessage() {}
 
 func (x *CreateResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[10]
+	mi := &file_yyets_v1_resource_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -743,7 +743,7 @@ func (x *CreateResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResourceRequest.ProtoReflect.Descriptor instead.
 func (*CreateResourceRequest) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{10}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{10}
 }
 
 type CreateResourceReply struct {
@@ -754,7 +754,7 @@ type CreateResourceReply struct {
 
 func (x *CreateResourceReply) Reset() {
 	*x = CreateResourceReply{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[11]
+	mi := &file_yyets_v1_resource_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -766,7 +766,7 @@ func (x *CreateResourceReply) String() string {
 func (*CreateResourceReply) ProtoMessage() {}
 
 func (x *CreateResourceReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[11]
+	mi := &file_yyets_v1_resource_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -779,7 +779,7 @@ func (x *CreateResourceReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateResourceReply.ProtoReflect.Descriptor instead.
 func (*CreateResourceReply) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{11}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{11}
 }
 
 type UpdateResourceRequest struct {
@@ -790,7 +790,7 @@ type UpdateResourceRequest struct {
 
 func (x *UpdateResourceRequest) Reset() {
 	*x = UpdateResourceRequest{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[12]
+	mi := &file_yyets_v1_resource_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -802,7 +802,7 @@ func (x *UpdateResourceRequest) String() string {
 func (*UpdateResourceRequest) ProtoMessage() {}
 
 func (x *UpdateResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[12]
+	mi := &file_yyets_v1_resource_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -815,7 +815,7 @@ func (x *UpdateResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResourceRequest.ProtoReflect.Descriptor instead.
 func (*UpdateResourceRequest) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{12}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{12}
 }
 
 type UpdateResourceReply struct {
@@ -826,7 +826,7 @@ type UpdateResourceReply struct {
 
 func (x *UpdateResourceReply) Reset() {
 	*x = UpdateResourceReply{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[13]
+	mi := &file_yyets_v1_resource_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -838,7 +838,7 @@ func (x *UpdateResourceReply) String() string {
 func (*UpdateResourceReply) ProtoMessage() {}
 
 func (x *UpdateResourceReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[13]
+	mi := &file_yyets_v1_resource_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -851,7 +851,7 @@ func (x *UpdateResourceReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResourceReply.ProtoReflect.Descriptor instead.
 func (*UpdateResourceReply) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{13}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{13}
 }
 
 type DeleteResourceRequest struct {
@@ -862,7 +862,7 @@ type DeleteResourceRequest struct {
 
 func (x *DeleteResourceRequest) Reset() {
 	*x = DeleteResourceRequest{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[14]
+	mi := &file_yyets_v1_resource_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -874,7 +874,7 @@ func (x *DeleteResourceRequest) String() string {
 func (*DeleteResourceRequest) ProtoMessage() {}
 
 func (x *DeleteResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[14]
+	mi := &file_yyets_v1_resource_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -887,7 +887,7 @@ func (x *DeleteResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResourceRequest.ProtoReflect.Descriptor instead.
 func (*DeleteResourceRequest) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{14}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{14}
 }
 
 type DeleteResourceReply struct {
@@ -898,7 +898,7 @@ type DeleteResourceReply struct {
 
 func (x *DeleteResourceReply) Reset() {
 	*x = DeleteResourceReply{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[15]
+	mi := &file_yyets_v1_resource_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -910,7 +910,7 @@ func (x *DeleteResourceReply) String() string {
 func (*DeleteResourceReply) ProtoMessage() {}
 
 func (x *DeleteResourceReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[15]
+	mi := &file_yyets_v1_resource_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -923,7 +923,7 @@ func (x *DeleteResourceReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResourceReply.ProtoReflect.Descriptor instead.
 func (*DeleteResourceReply) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{15}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{15}
 }
 
 type GetResourceRequest struct {
@@ -935,7 +935,7 @@ type GetResourceRequest struct {
 
 func (x *GetResourceRequest) Reset() {
 	*x = GetResourceRequest{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[16]
+	mi := &file_yyets_v1_resource_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -947,7 +947,7 @@ func (x *GetResourceRequest) String() string {
 func (*GetResourceRequest) ProtoMessage() {}
 
 func (x *GetResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[16]
+	mi := &file_yyets_v1_resource_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -960,7 +960,7 @@ func (x *GetResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetResourceRequest.ProtoReflect.Descriptor instead.
 func (*GetResourceRequest) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{16}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetResourceRequest) GetId() int64 {
@@ -985,7 +985,7 @@ type GetResourceReply struct {
 
 func (x *GetResourceReply) Reset() {
 	*x = GetResourceReply{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[17]
+	mi := &file_yyets_v1_resource_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -997,7 +997,7 @@ func (x *GetResourceReply) String() string {
 func (*GetResourceReply) ProtoMessage() {}
 
 func (x *GetResourceReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[17]
+	mi := &file_yyets_v1_resource_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1010,7 +1010,7 @@ func (x *GetResourceReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetResourceReply.ProtoReflect.Descriptor instead.
 func (*GetResourceReply) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{17}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetResourceReply) GetId() int64 {
@@ -1070,7 +1070,7 @@ type ListResourceRequest struct {
 
 func (x *ListResourceRequest) Reset() {
 	*x = ListResourceRequest{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[18]
+	mi := &file_yyets_v1_resource_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1082,7 +1082,7 @@ func (x *ListResourceRequest) String() string {
 func (*ListResourceRequest) ProtoMessage() {}
 
 func (x *ListResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[18]
+	mi := &file_yyets_v1_resource_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1095,7 +1095,7 @@ func (x *ListResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListResourceRequest.ProtoReflect.Descriptor instead.
 func (*ListResourceRequest) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{18}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{18}
 }
 
 type ListResourceReply struct {
@@ -1106,7 +1106,7 @@ type ListResourceReply struct {
 
 func (x *ListResourceReply) Reset() {
 	*x = ListResourceReply{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[19]
+	mi := &file_yyets_v1_resource_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1118,7 +1118,7 @@ func (x *ListResourceReply) String() string {
 func (*ListResourceReply) ProtoMessage() {}
 
 func (x *ListResourceReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[19]
+	mi := &file_yyets_v1_resource_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1131,7 +1131,7 @@ func (x *ListResourceReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListResourceReply.ProtoReflect.Descriptor instead.
 func (*ListResourceReply) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{19}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{19}
 }
 
 type SearchResourceRequest struct {
@@ -1144,7 +1144,7 @@ type SearchResourceRequest struct {
 
 func (x *SearchResourceRequest) Reset() {
 	*x = SearchResourceRequest{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[20]
+	mi := &file_yyets_v1_resource_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1156,7 +1156,7 @@ func (x *SearchResourceRequest) String() string {
 func (*SearchResourceRequest) ProtoMessage() {}
 
 func (x *SearchResourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[20]
+	mi := &file_yyets_v1_resource_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1169,7 +1169,7 @@ func (x *SearchResourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchResourceRequest.ProtoReflect.Descriptor instead.
 func (*SearchResourceRequest) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{20}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *SearchResourceRequest) GetKeyword() string {
@@ -1197,7 +1197,7 @@ type SearchResourceReply struct {
 
 func (x *SearchResourceReply) Reset() {
 	*x = SearchResourceReply{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[21]
+	mi := &file_yyets_v1_resource_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1209,7 +1209,7 @@ func (x *SearchResourceReply) String() string {
 func (*SearchResourceReply) ProtoMessage() {}
 
 func (x *SearchResourceReply) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[21]
+	mi := &file_yyets_v1_resource_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1222,7 +1222,7 @@ func (x *SearchResourceReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchResourceReply.ProtoReflect.Descriptor instead.
 func (*SearchResourceReply) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{21}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *SearchResourceReply) GetResource() []*ResourceDataInfo {
@@ -1263,7 +1263,7 @@ type SearchComment struct {
 
 func (x *SearchComment) Reset() {
 	*x = SearchComment{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[22]
+	mi := &file_yyets_v1_resource_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1275,7 +1275,7 @@ func (x *SearchComment) String() string {
 func (*SearchComment) ProtoMessage() {}
 
 func (x *SearchComment) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[22]
+	mi := &file_yyets_v1_resource_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1288,7 +1288,7 @@ func (x *SearchComment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchComment.ProtoReflect.Descriptor instead.
 func (*SearchComment) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{22}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *SearchComment) GetUsername() string {
@@ -1362,7 +1362,7 @@ type SearchSubtitle struct {
 
 func (x *SearchSubtitle) Reset() {
 	*x = SearchSubtitle{}
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[23]
+	mi := &file_yyets_v1_resource_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1374,7 +1374,7 @@ func (x *SearchSubtitle) String() string {
 func (*SearchSubtitle) ProtoMessage() {}
 
 func (x *SearchSubtitle) ProtoReflect() protoreflect.Message {
-	mi := &file_api_yyets_v1_resource_proto_msgTypes[23]
+	mi := &file_yyets_v1_resource_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1387,14 +1387,14 @@ func (x *SearchSubtitle) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SearchSubtitle.ProtoReflect.Descriptor instead.
 func (*SearchSubtitle) Descriptor() ([]byte, []int) {
-	return file_api_yyets_v1_resource_proto_rawDescGZIP(), []int{23}
+	return file_yyets_v1_resource_proto_rawDescGZIP(), []int{23}
 }
 
-var File_api_yyets_v1_resource_proto protoreflect.FileDescriptor
+var File_yyets_v1_resource_proto protoreflect.FileDescriptor
 
-const file_api_yyets_v1_resource_proto_rawDesc = "" +
+const file_yyets_v1_resource_proto_rawDesc = "" +
 	"\n" +
-	"\x1bapi/yyets/v1/resource.proto\x12\fapi.yyets.v1\x1a\x1cgoogle/api/annotations.proto\"\x9c\x02\n" +
+	"\x17yyets/v1/resource.proto\x12\fapi.yyets.v1\x1a\x1cgoogle/api/annotations.proto\"\x9c\x02\n" +
 	"\x10ResourceDataInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
 	"\x06cnname\x18\x02 \x01(\tR\x06cnname\x12\x16\n" +
@@ -1507,19 +1507,19 @@ const file_api_yyets_v1_resource_proto_rawDesc = "" +
 	"\fapi.yyets.v1P\x01Z\x1bYYeTsBot-Go/api/yyets/v1;v1b\x06proto3"
 
 var (
-	file_api_yyets_v1_resource_proto_rawDescOnce sync.Once
-	file_api_yyets_v1_resource_proto_rawDescData []byte
+	file_yyets_v1_resource_proto_rawDescOnce sync.Once
+	file_yyets_v1_resource_proto_rawDescData []byte
 )
 
-func file_api_yyets_v1_resource_proto_rawDescGZIP() []byte {
-	file_api_yyets_v1_resource_proto_rawDescOnce.Do(func() {
-		file_api_yyets_v1_resource_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_api_yyets_v1_resource_proto_rawDesc), len(file_api_yyets_v1_resource_proto_rawDesc)))
+func file_yyets_v1_resource_proto_rawDescGZIP() []byte {
+	file_yyets_v1_resource_proto_rawDescOnce.Do(func() {
+		file_yyets_v1_resource_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_yyets_v1_resource_proto_rawDesc), len(file_yyets_v1_resource_proto_rawDesc)))
 	})
-	return file_api_yyets_v1_resource_proto_rawDescData
+	return file_yyets_v1_resource_proto_rawDescData
 }
 
-var file_api_yyets_v1_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
-var file_api_yyets_v1_resource_proto_goTypes = []any{
+var file_yyets_v1_resource_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
+var file_yyets_v1_resource_proto_goTypes = []any{
 	(*ResourceDataInfo)(nil),      // 0: api.yyets.v1.ResourceDataInfo
 	(*ResourceFile)(nil),          // 1: api.yyets.v1.ResourceFile
 	(*ResourceSeasonItem)(nil),    // 2: api.yyets.v1.ResourceSeasonItem
@@ -1547,7 +1547,7 @@ var file_api_yyets_v1_resource_proto_goTypes = []any{
 	nil,                           // 24: api.yyets.v1.ResourceSeason.ItemsEntry
 	nil,                           // 25: api.yyets.v1.ResourceClass.ALLEntry
 }
-var file_api_yyets_v1_resource_proto_depIdxs = []int32{
+var file_yyets_v1_resource_proto_depIdxs = []int32{
 	1,  // 0: api.yyets.v1.ResourceSeasonItem.files:type_name -> api.yyets.v1.ResourceFile
 	2,  // 1: api.yyets.v1.ResourceSeasonList.items:type_name -> api.yyets.v1.ResourceSeasonItem
 	24, // 2: api.yyets.v1.ResourceSeason.items:type_name -> api.yyets.v1.ResourceSeason.ItemsEntry
@@ -1587,26 +1587,26 @@ var file_api_yyets_v1_resource_proto_depIdxs = []int32{
 	0,  // [0:18] is the sub-list for field type_name
 }
 
-func init() { file_api_yyets_v1_resource_proto_init() }
-func file_api_yyets_v1_resource_proto_init() {
-	if File_api_yyets_v1_resource_proto != nil {
+func init() { file_yyets_v1_resource_proto_init() }
+func file_yyets_v1_resource_proto_init() {
+	if File_yyets_v1_resource_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_yyets_v1_resource_proto_rawDesc), len(file_api_yyets_v1_resource_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_yyets_v1_resource_proto_rawDesc), len(file_yyets_v1_resource_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_api_yyets_v1_resource_proto_goTypes,
-		DependencyIndexes: file_api_yyets_v1_resource_proto_depIdxs,
-		MessageInfos:      file_api_yyets_v1_resource_proto_msgTypes,
+		GoTypes:           file_yyets_v1_resource_proto_goTypes,
+		DependencyIndexes: file_yyets_v1_resource_proto_depIdxs,
+		MessageInfos:      file_yyets_v1_resource_proto_msgTypes,
 	}.Build()
-	File_api_yyets_v1_resource_proto = out.File
-	file_api_yyets_v1_resource_proto_goTypes = nil
-	file_api_yyets_v1_resource_proto_depIdxs = nil
+	File_yyets_v1_resource_proto = out.File
+	file_yyets_v1_resource_proto_goTypes = nil
+	file_yyets_v1_resource_proto_depIdxs = nil
 }

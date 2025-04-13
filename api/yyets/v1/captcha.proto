@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package api.yyets.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "YYeTsBot-Go/api/yyets/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.yyets.v1";
+
+service Captcha {
+	rpc CreateCaptcha (CreateCaptchaRequest) returns (CreateCaptchaReply);
+	rpc UpdateCaptcha (UpdateCaptchaRequest) returns (UpdateCaptchaReply);
+	rpc DeleteCaptcha (DeleteCaptchaRequest) returns (DeleteCaptchaReply);
+	rpc GetCaptcha (GetCaptchaRequest) returns (GetCaptchaReply){
+		option (google.api.http) = {
+			get: "/api/captcha"
+		};
+	};
+	rpc ListCaptcha (ListCaptchaRequest) returns (ListCaptchaReply);
+}
+
+message CreateCaptchaRequest {}
+message CreateCaptchaReply {}
+
+message UpdateCaptchaRequest {}
+message UpdateCaptchaReply {}
+
+message DeleteCaptchaRequest {}
+message DeleteCaptchaReply {}
+
+message GetCaptchaRequest {
+	string id = 1;
+}
+message GetCaptchaReply {
+	string base64 = 1;
+}
+
+message ListCaptchaRequest {}
+message ListCaptchaReply {}
