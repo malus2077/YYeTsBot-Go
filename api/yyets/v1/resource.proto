@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package api.yyets.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "YYeTsBot-Go/api/yyets/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.yyets.v1";
+
+service Resource {
+	rpc CreateResource (CreateResourceRequest) returns (CreateResourceReply);
+	rpc UpdateResource (UpdateResourceRequest) returns (UpdateResourceReply);
+	rpc DeleteResource (DeleteResourceRequest) returns (DeleteResourceReply);
+	rpc GetResource (GetResourceRequest) returns (GetResourceReply){
+		option (google.api.http) = {
+			get: "/api/resource"
+		};
+	};
+	rpc ListResource (ListResourceRequest) returns (ListResourceReply);
+	rpc TopResource (TopResourceRequest) returns (TopResourceReply){
+		option (google.api.http) = {
+			get: "/api/top"
+		};
+	};
+	rpc SearchResource (SearchResourceRequest) returns (SearchResourceReply){
+		option (google.api.http) = {
+			get: "/api/resource/search"
+		};
+	};
+}
+
+message ResourceDataInfo {
+	int64 id = 1;
+	string cnname = 2;
+	string enname = 3;
+	string aliasname = 4;
+	string channel = 5;
+	string channel_cn = 6;
+	string area = 7;
+	string show_type = 8;
+	string expire = 9;
+	int64 views = 10;
+	repeated int64 year = 11;
+}
+message ResourceFile {
+	string way = 1;
+	string way_cn = 2;
+	string address = 3;
+	string passwd = 4;
+}
+
+message ResourceSeasonItem {
+	string item_id = 1;
+	string episode = 2;
+	string name = 3;
+	string size = 4;
+	int64 yyets_trans = 5;
+	string dateline = 6;
+	repeated ResourceFile files = 7;
+}
+
+message ResourceSeasonList {
+	repeated ResourceSeasonItem items = 1;
+}
+message ResourceSeason{
+	string season_num = 1;
+	string season_cn = 2;
+	map<string, ResourceSeasonList> items = 3;
+	repeated string formats = 4;
+}
+
+message ResourceData {
+	ResourceDataInfo info = 1;
+	repeated ResourceSeason list = 2;
+}
+message ResourceItem  {
+	ResourceData data = 1;
+}
+
+message ResourceClass {
+	map<string, string> ALL =1;
+	string JP =2;
+	string US =3;
+	string UK =4;
+	string KR =5;
+}
+
+message TopResourceRequest {}
+message TopResourceReply {
+	repeated ResourceItem ALL = 1;
+	repeated ResourceItem US = 2;
+	repeated ResourceItem JP = 3;
+	repeated ResourceItem KR = 4;
+	repeated ResourceItem UK = 5;
+	ResourceClass class =6;
+}
+
+
+message CreateResourceRequest {}
+message CreateResourceReply {}
+
+message UpdateResourceRequest {}
+message UpdateResourceReply {}
+
+message DeleteResourceRequest {}
+message DeleteResourceReply {}
+
+message GetResourceRequest {
+	int64 id = 1;
+}
+message GetResourceReply {
+	int64 id = 1;
+	string cnname = 2;
+	string enname = 3;
+	string aliasname = 4;
+	string area = 5;
+	int64 views = 6;
+	ResourceData data = 7;
+}
+
+message ListResourceRequest {}
+message ListResourceReply {}
+
+message SearchResourceRequest {
+	string keyword = 1 ;
+	string type = 2;
+}
+message SearchResourceReply {
+	repeated ResourceDataInfo resource = 1;
+	repeated SearchComment comment = 2;
+	repeated SearchSubtitle subtitle = 3;
+}
+message SearchComment {
+	string username = 1;
+	string date = 2;
+	string comment = 3;
+	string commentID = 4;
+	int64 resourceID = 5;
+	string resourceName = 6;
+	string origin = 7;
+	bool hasAvatar = 8;
+	string hash = 9;
+}
+message SearchSubtitle {}

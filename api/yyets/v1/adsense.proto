@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package api.yyets.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "YYeTsBot-Go/api/yyets/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.yyets.v1";
+
+service Adsense {
+	rpc CreateAdsense (CreateAdsenseRequest) returns (CreateAdsenseReply);
+	rpc UpdateAdsense (UpdateAdsenseRequest) returns (UpdateAdsenseReply);
+	rpc DeleteAdsense (DeleteAdsenseRequest) returns (DeleteAdsenseReply);
+	rpc GetAdsense (GetAdsenseRequest) returns (GetAdsenseReply);
+	rpc ListAdsense (ListAdsenseRequest) returns (ListAdsenseReply){
+		option (google.api.http) = {
+			get: "/api/adsense"
+		};
+	};
+}
+
+message CreateAdsenseRequest {}
+message CreateAdsenseReply {}
+
+message UpdateAdsenseRequest {}
+message UpdateAdsenseReply {}
+
+message DeleteAdsenseRequest {}
+message DeleteAdsenseReply {}
+
+message GetAdsenseRequest {}
+message GetAdsenseReply {}
+
+message ListAdsenseRequest {}
+message ListAdsenseReply {
+	repeated string data = 1;
+}

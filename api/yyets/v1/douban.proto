@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package api.yyets.v1;
+import "google/api/annotations.proto";
+
+option go_package = "YYeTsBot-Go/api/yyets/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.yyets.v1";
+
+service Douban {
+	rpc CreateDouban (CreateDoubanRequest) returns (CreateDoubanReply);
+	rpc UpdateDouban (UpdateDoubanRequest) returns (UpdateDoubanReply);
+	rpc DeleteDouban (DeleteDoubanRequest) returns (DeleteDoubanReply);
+	rpc GetDouban (GetDoubanRequest) returns (GetDoubanReply){
+		option (google.api.http) = {
+			get: "/api/douban"
+		};
+	};
+	rpc ListDouban (ListDoubanRequest) returns (ListDoubanReply);
+}
+
+message CreateDoubanRequest {}
+message CreateDoubanReply {}
+
+message UpdateDoubanRequest {}
+message UpdateDoubanReply {}
+
+message DeleteDoubanRequest {}
+message DeleteDoubanReply {}
+
+message GetDoubanRequest {
+	int64 resource_id = 1;
+}
+message GetDoubanReply {
+	string name = 1;
+	int64 douban_id = 2;
+	string douban_link = 3;
+	string poster_link = 4;
+	int64 resource_id = 5;
+	string rating = 6;
+	repeated string actors = 7;
+	repeated string directors = 8;
+	repeated string genre = 9;
+	string release_date = 10;
+	string episode_count = 11;
+	string episode_duration = 12;
+	repeated string writers = 13;
+	string year = 14;
+	string introduction = 15;
+}
+
+message ListDoubanRequest {}
+message ListDoubanReply {}

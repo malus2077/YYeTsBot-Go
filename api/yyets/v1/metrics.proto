@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package api.yyets.v1;
+import "google/api/annotations.proto";
+
+option go_package = "YYeTsBot-Go/api/yyets/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.yyets.v1";
+
+service Metrics {
+	rpc CreateMetrics (CreateMetricsRequest) returns (CreateMetricsReply){
+		option (google.api.http) = {
+			post: "/api/metrics",
+			body: "*"
+		};
+	};
+	rpc UpdateMetrics (UpdateMetricsRequest) returns (UpdateMetricsReply);
+	rpc DeleteMetrics (DeleteMetricsRequest) returns (DeleteMetricsReply);
+	rpc GetMetrics (GetMetricsRequest) returns (GetMetricsReply);
+	rpc ListMetrics (ListMetricsRequest) returns (ListMetricsReply);
+}
+
+message CreateMetricsRequest {
+	int64 id =1;
+	string type =2;
+}
+message CreateMetricsReply {}
+
+message UpdateMetricsRequest {}
+message UpdateMetricsReply {}
+
+message DeleteMetricsRequest {}
+message DeleteMetricsReply {}
+
+message GetMetricsRequest {}
+message GetMetricsReply {}
+
+message ListMetricsRequest {}
+message ListMetricsReply {}
