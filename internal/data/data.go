@@ -2,7 +2,9 @@ package data
 
 import (
 	"YYeTsBot-Go/internal/conf"
+	"YYeTsBot-Go/internal/data/crawler"
 	"context"
+	"time"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/google/wire"
@@ -15,19 +17,20 @@ import (
 )
 
 // ProviderSet is data providers.
-var ProviderSet = wire.NewSet(NewData, NewGreeterRepo, NewResourceRepo)
+var ProviderSet = wire.NewSet(NewData, NewUserRepo, NewGreeterRepo, NewResourceRepo, NewCommentRepo, NewDoubanRepo)
 
 // Data .
 type Data struct {
 	// TODO wrapped database client
 	db           *mongo.Database
 	cacheManager *cache.Cache[string]
+	crawler      *crawler.Crawler
 }
 
 // NewData .
 func NewData(c *conf.Data, logger log.Logger) (*Data, func(), error) {
 	hLog := log.NewHelper(logger)
-	client, err := mongo.Connect(options.Client().ApplyURI(c.Database.Source))
+	client, err := mongo.Connect(options.Client().ApplyURI(c.Database.Source).SetConnectTimeout(5 * time.Second))
 	if err != nil {
 		return nil, nil, err
 	}
@@ -45,6 +48,7 @@ func NewData(c *conf.Data, logger log.Logger) (*Data, func(), error) {
 	}))
 
 	cacheManager := cache.New[string](store)
+	crawler := &crawler.Crawler{}
 
 	cleanup := func() {
 		hLog.Info("closing the data resources")
@@ -52,5 +56,5 @@ func NewData(c *conf.Data, logger log.Logger) (*Data, func(), error) {
 			hLog.Error(err)
 		}
 	}
-	return &Data{db: db, cacheManager: cacheManager}, cleanup, nil
+	return &Data{db: db, cacheManager: cacheManager, crawler: crawler}, cleanup, nil
 }

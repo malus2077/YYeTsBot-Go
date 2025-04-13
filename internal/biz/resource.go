@@ -23,22 +23,50 @@ type ResourceDataInfo struct {
 	Year      []int64 `bson:"year"`
 }
 
+type ResourceFile struct {
+	Way     string `bson:"way" json:"way"`
+	WayCn   string `bson:"way_cn" json:"way_cn"`
+	Address string `bson:"address" json:"address"`
+	Passwd  string `bson:"passwd" json:"passwd"`
+}
+
+type ResourceSeasonItem struct {
+	ItemId     string         `bson:"itemid" json:"itemid"`
+	Episode    string         `bson:"episode" json:"episode"`
+	Name       string         `bson:"name" json:"name"`
+	Size       string         `bson:"size" json:"size"`
+	YyetsTrans int64          `bson:"yyets_trans" json:"yyets_trans"`
+	Dateline   string         `bson:"dateline" json:"dateline"`
+	Files      []ResourceFile `bson:"files" json:"files"`
+}
+
+type ResourceSeason struct {
+	SeasonNum string                           `bson:"season_num" json:"season_num"`
+	SeasonCn  string                           `bson:"season_cn" json:"season_cn"`
+	Items     map[string][]*ResourceSeasonItem `bson:"items" json:"items"`
+	Formats   []string                         `bson:"formats" json:"formats"`
+}
+
 type ResourceData struct {
-	Info ResourceDataInfo `bson:"info"`
+	Info ResourceDataInfo  `bson:"info"`
+	List []*ResourceSeason `bson:"list"`
 }
 
 type Resource struct {
-	ID        bson.ObjectID `bson:"_id"`
-	CnName    string        `bson:"cnname"`
-	EnName    string        `bson:"enname"`
-	AliasName string        `bson:"aliasname"`
-	Area      string        `bson:"area"`
-	Views     int64         `bson:"views"`
-	Data      ResourceData  `bson:"data"`
+	Id        int64        `bson:"id"`
+	CnName    string       `bson:"cnname"`
+	EnName    string       `bson:"enname"`
+	AliasName string       `bson:"aliasname"`
+	Area      string       `bson:"area"`
+	Views     int64        `bson:"views"`
+	Data      ResourceData `bson:"data"`
 }
 
 type ResourceRepo interface {
+	FindByID(ctx context.Context, id int64) (*Resource, error)
 	ListTopByArea(context.Context, interface{}) (*[]Resource, error)
+	FetchMapByIds(context.Context, []int64) (map[int64]*Resource, error)
+	Search(context.Context, string) ([]*Resource, error)
 }
 
 type ResourceUsecase struct {
@@ -83,4 +111,16 @@ func (uc *ResourceUsecase) TopResourceMap(ctx context.Context) (map[string]*[]Re
 	}
 
 	return result, nil
+}
+
+func (uc *ResourceUsecase) Search(ctx context.Context, keyword string) ([]*Resource, error) {
+	return uc.repo.Search(ctx, keyword)
+}
+
+func (uc *ResourceUsecase) FetchMapByIds(ctx context.Context, ids []int64) (map[int64]*Resource, error) {
+	return uc.repo.FetchMapByIds(ctx, ids)
+}
+
+func (uc *ResourceUsecase) FindByID(ctx context.Context, id int64) (*Resource, error) {
+	return uc.repo.FindByID(ctx, id)
 }
