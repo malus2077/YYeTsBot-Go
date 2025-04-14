@@ -2,20 +2,43 @@ syntax = "proto3";
 
 package api.yyets.v1;
 
+import "google/api/annotations.proto";
+
 option go_package = "YYeTsBot-Go/api/yyets/v1;v1";
 option java_multiple_files = true;
 option java_package = "api.yyets.v1";
 
 service User {
-	rpc CreateUser (CreateUserRequest) returns (CreateUserReply);
+	rpc CreateUser (CreateUserRequest) returns (CreateUserReply){
+		option (google.api.http) = {
+			post: "/api/user"
+			body: "*"
+		};
+	};
 	rpc UpdateUser (UpdateUserRequest) returns (UpdateUserReply);
 	rpc DeleteUser (DeleteUserRequest) returns (DeleteUserReply);
-	rpc GetUser (GetUserRequest) returns (GetUserReply);
+	rpc GetUser (GetUserRequest) returns (GetUserReply){
+		option (google.api.http) = {
+			get: "/api/user",
+		};
+	};
 	rpc ListUser (ListUserRequest) returns (ListUserReply);
 }
 
-message CreateUserRequest {}
-message CreateUserReply {}
+message CreateUserRequest {
+	string username = 1;
+	string password = 2;
+	string captcha = 3;
+	string captcha_id = 4;
+}
+message CreateUserReply {
+	repeated string group = 1;
+	string message = 2;
+	int64 status_code = 3;
+	string username = 4;
+	bool status = 5;
+	string access_token = 6;
+}
 
 message UpdateUserRequest {}
 message UpdateUserReply {}
@@ -24,7 +47,17 @@ message DeleteUserRequest {}
 message DeleteUserReply {}
 
 message GetUserRequest {}
-message GetUserReply {}
+message GetUserReply {
+	string username = 1;
+	string date = 2;
+	string ip = 3;
+	string browser = 4;
+	string hash = 5;
+	string lastDate = 6;
+	string lastIp = 7;
+	repeated string group = 8;
+	bool hasAvatar = 9;
+}
 
 message ListUserRequest {}
 message ListUserReply {}

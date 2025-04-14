@@ -3,6 +3,8 @@ package data
 import (
 	"YYeTsBot-Go/internal/biz"
 	"context"
+	"errors"
+	"go.mongodb.org/mongo-driver/v2/mongo"
 	"strings"
 
 	"github.com/go-kratos/kratos/v2/log"
@@ -44,9 +46,54 @@ func (u *userRepo) FetchUserDataMap(ctx context.Context, userNames []string) (ma
 	return userDataMap, nil
 }
 
-// FindById implements biz.UserRepo.
+func (u *userRepo) Save(ctx context.Context, user *biz.User) (*biz.User, error) {
+	collection := u.data.db.Collection("users")
+	result, err := collection.InsertOne(ctx, user)
+	if err != nil {
+		return nil, err
+	}
+	user.ID = result.InsertedID.(bson.ObjectID)
+	return user, err
+}
+
 func (u *userRepo) FindById(ctx context.Context, id string) (*biz.User, error) {
-	panic("unimplemented")
+	objectId, err := bson.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, err
+	}
+
+	collection := u.data.db.Collection("users")
+	filter := bson.M{"_id": objectId}
+	var user biz.User
+	err = collection.FindOne(ctx, filter).Decode(&user)
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+// FindUser implements biz.UserRepo.
+func (u *userRepo) FindUser(ctx context.Context, username, password string) (*biz.User, error) {
+	collection := u.data.db.Collection("users")
+	filter := bson.M{
+		"username": username,
+		"deleted_at": bson.M{
+			"$exists": false,
+		},
+	}
+	var user biz.User
+	err := collection.FindOne(ctx, filter).Decode(&user)
+	if err != nil {
+		if errors.Is(err, mongo.ErrNoDocuments) {
+			return nil, nil
+		}
+		return nil, err
+	}
+
+	if user.Password != password {
+		return nil, errors.New("wrong password")
+	}
+	return &user, nil
 }
 
 // List implements biz.UserRepo.
