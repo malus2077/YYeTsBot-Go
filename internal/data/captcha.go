@@ -7,7 +7,9 @@ import (
 	"encoding/base64"
 	"fmt"
 	"github.com/dchest/captcha"
+	"github.com/eko/gocache/lib/v4/store"
 	"github.com/go-kratos/kratos/v2/log"
+	"time"
 )
 
 const (
@@ -35,7 +37,7 @@ func (c captchaRepo) Generate(ctx context.Context, requestId string) (*biz.Captc
 	}
 
 	base64Captcha := "data:image/png;base64," + base64.StdEncoding.EncodeToString(imgBuf.Bytes())
-	err = c.data.cacheManager.Set(ctx, cacheKey, captchaID)
+	err = c.data.cacheManager.Set(ctx, cacheKey, captchaID, store.WithExpiration(5*time.Minute))
 	if err != nil {
 		return nil, err
 	}

@@ -3,21 +3,38 @@
 
 openapi: 3.0.3
 info:
-    title: User API
+    title: Comment API
     version: 0.0.1
 paths:
-    /api/user:
+    /api/comment:
         get:
             tags:
-                - User
-            operationId: User_GetUser
+                - Comment
+            operationId: Comment_ListComment
+            parameters:
+                - name: resourceId
+                  in: query
+                  schema:
+                    type: string
+                - name: size
+                  in: query
+                  schema:
+                    type: string
+                - name: page
+                  in: query
+                  schema:
+                    type: string
+                - name: sort
+                  in: query
+                  schema:
+                    type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/GetUserReply'
+                                $ref: '#/components/schemas/ListCommentReply'
                 default:
                     description: Default error response
                     content:
@@ -26,13 +43,13 @@ paths:
                                 $ref: '#/components/schemas/Status'
         post:
             tags:
-                - User
-            operationId: User_CreateUser
+                - Comment
+            operationId: Comment_CreateComment
             requestBody:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CreateUserRequest'
+                            $ref: '#/components/schemas/CreateCommentRequest'
                 required: true
             responses:
                 "200":
@@ -40,7 +57,30 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CreateUserReply'
+                                $ref: '#/components/schemas/CreateCommentReply'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/comment/newest:
+        get:
+            tags:
+                - Comment
+            operationId: Comment_ListLatestComment
+            parameters:
+                - name: size
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ListLatestCommentReply'
                 default:
                     description: Default error response
                     content:
@@ -49,50 +89,22 @@ paths:
                                 $ref: '#/components/schemas/Status'
 components:
     schemas:
-        CreateUserReply:
-            type: object
-            properties:
-                group:
-                    type: array
-                    items:
-                        type: string
-                message:
-                    type: string
-                statusCode:
-                    type: string
-                username:
-                    type: string
-                status:
-                    type: boolean
-                accessToken:
-                    type: string
-        CreateUserRequest:
-            type: object
-            properties:
-                username:
-                    type: string
-                password:
-                    type: string
-                captcha:
-                    type: string
-                captchaId:
-                    type: string
-        GetUserReply:
+        CommentItem:
             type: object
             properties:
                 username:
                     type: string
                 date:
                     type: string
-                ip:
-                    type: string
                 browser:
                     type: string
-                hash:
+                content:
                     type: string
-                lastDate:
+                resourceId:
                     type: string
-                lastIp:
+                type:
+                    type: string
+                id:
                     type: string
                 group:
                     type: array
@@ -100,6 +112,28 @@ components:
                         type: string
                 hasAvatar:
                     type: boolean
+                cnname:
+                    type: string
+        CreateCommentReply:
+            type: object
+            properties:
+                message:
+                    type: string
+                statusCode:
+                    type: string
+        CreateCommentRequest:
+            type: object
+            properties:
+                resourceId:
+                    type: string
+                captcha:
+                    type: string
+                id:
+                    type: string
+                content:
+                    type: string
+                commentId:
+                    type: string
         GoogleProtobufAny:
             type: object
             properties:
@@ -108,6 +142,26 @@ components:
                     description: The type of the serialized message.
             additionalProperties: true
             description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+        ListCommentReply:
+            type: object
+            properties:
+                count:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/CommentItem'
+                resourceId:
+                    type: string
+        ListLatestCommentReply:
+            type: object
+            properties:
+                count:
+                    type: string
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/CommentItem'
         Status:
             type: object
             properties:
@@ -125,4 +179,4 @@ components:
                     description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
             description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
 tags:
-    - name: User
+    - name: Comment

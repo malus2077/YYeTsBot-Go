@@ -19,6 +19,7 @@ func NewWhiteListMatcher() selector.MatchFunc {
 
 	whiteList := make(map[string]struct{})
 	whiteList["/api.yyets.v1.User/GetUser"] = struct{}{}
+	whiteList["/api.yyets.v1.Comment/CreateComment"] = struct{}{}
 	return func(ctx context.Context, operation string) bool {
 		if _, ok := whiteList[operation]; ok {
 			return true

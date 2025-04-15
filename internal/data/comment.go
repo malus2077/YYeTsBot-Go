@@ -14,6 +14,33 @@ type commentRepo struct {
 	log  *log.Helper
 }
 
+func (r *commentRepo) FindById(ctx context.Context, id string) (*biz.Comment, error) {
+	collection := r.data.db.Collection("comment")
+	objectId, err := bson.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, err
+	}
+	condition := bson.M{
+		"_id": objectId,
+	}
+	var comment *biz.Comment
+	err = collection.FindOne(ctx, condition).Decode(&comment)
+	if err != nil {
+		return nil, err
+	}
+	return comment, nil
+}
+
+func (r *commentRepo) Save(ctx context.Context, comment *biz.Comment) (*biz.Comment, error) {
+	collection := r.data.db.Collection("comment")
+	result, err := collection.InsertOne(ctx, comment)
+	if err != nil {
+		return nil, err
+	}
+	comment.ID = result.InsertedID.(bson.ObjectID)
+	return comment, nil
+}
+
 func (r *commentRepo) List(ctx context.Context, resourceId, pageNo, pageSize int64, sort string) ([]*biz.Comment, int64, error) {
 	sorting := -1
 	if sort != "newest" {

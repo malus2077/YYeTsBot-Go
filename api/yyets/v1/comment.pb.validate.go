@@ -57,6 +57,53 @@ func (m *CreateCommentRequest) validate(all bool) error {
 
 	var errors []error
 
+	if m.GetResourceId() <= 0 {
+		err := CreateCommentRequestValidationError{
+			field:  "ResourceId",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if utf8.RuneCountInString(m.GetCaptcha()) != 4 {
+		err := CreateCommentRequestValidationError{
+			field:  "Captcha",
+			reason: "value length must be 4 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+
+	}
+
+	if utf8.RuneCountInString(m.GetId()) > 32 {
+		err := CreateCommentRequestValidationError{
+			field:  "Id",
+			reason: "value length must be at most 32 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if l := utf8.RuneCountInString(m.GetContent()); l < 1 || l > 120 {
+		err := CreateCommentRequestValidationError{
+			field:  "Content",
+			reason: "value length must be between 1 and 120 runes, inclusive",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	// no validation rules for CommentId
+
 	if len(errors) > 0 {
 		return CreateCommentRequestMultiError(errors)
 	}
@@ -158,6 +205,10 @@ func (m *CreateCommentReply) validate(all bool) error {
 	}
 
 	var errors []error
+
+	// no validation rules for Message
+
+	// no validation rules for StatusCode
 
 	if len(errors) > 0 {
 		return CreateCommentReplyMultiError(errors)

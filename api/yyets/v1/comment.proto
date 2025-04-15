@@ -10,7 +10,12 @@ option java_multiple_files = true;
 option java_package = "api.yyets.v1";
 
 service Comment {
-	rpc CreateComment (CreateCommentRequest) returns (CreateCommentReply);
+	rpc CreateComment (CreateCommentRequest) returns (CreateCommentReply){
+		option (google.api.http) = {
+			post: "/api/comment"
+			body: "*"
+		};
+	};
 	rpc UpdateComment (UpdateCommentRequest) returns (UpdateCommentReply);
 	rpc DeleteComment (DeleteCommentRequest) returns (DeleteCommentReply);
 	rpc GetComment (GetCommentRequest) returns (GetCommentReply);
@@ -26,8 +31,17 @@ service Comment {
 	};
 }
 
-message CreateCommentRequest {}
-message CreateCommentReply {}
+message CreateCommentRequest {
+	int64 resource_id = 1;
+	string captcha = 2;
+	string id = 3;
+	string content = 4;
+	string comment_id=5;
+}
+message CreateCommentReply {
+	string message = 1;
+	int64 status_code = 2;
+}
 
 message UpdateCommentRequest {}
 message UpdateCommentReply {}

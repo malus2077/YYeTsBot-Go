@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-http v2.8.4
 // - protoc             v5.29.3
-// source: yyets/v1/comment.proto
+// source: api/yyets/v1/comment.proto
 
 package v1
 
@@ -19,18 +19,43 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
+const OperationCommentCreateComment = "/api.yyets.v1.Comment/CreateComment"
 const OperationCommentListComment = "/api.yyets.v1.Comment/ListComment"
 const OperationCommentListLatestComment = "/api.yyets.v1.Comment/ListLatestComment"
 
 type CommentHTTPServer interface {
+	CreateComment(context.Context, *CreateCommentRequest) (*CreateCommentReply, error)
 	ListComment(context.Context, *ListCommentRequest) (*ListCommentReply, error)
 	ListLatestComment(context.Context, *ListLatestCommentRequest) (*ListLatestCommentReply, error)
 }
 
 func RegisterCommentHTTPServer(s *http.Server, srv CommentHTTPServer) {
 	r := s.Route("/")
+	r.POST("/api/comment", _Comment_CreateComment0_HTTP_Handler(srv))
 	r.GET("/api/comment", _Comment_ListComment0_HTTP_Handler(srv))
 	r.GET("/api/comment/newest", _Comment_ListLatestComment0_HTTP_Handler(srv))
+}
+
+func _Comment_CreateComment0_HTTP_Handler(srv CommentHTTPServer) func(ctx http.Context) error {
+	return func(ctx http.Context) error {
+		var in CreateCommentRequest
+		if err := ctx.Bind(&in); err != nil {
+			return err
+		}
+		if err := ctx.BindQuery(&in); err != nil {
+			return err
+		}
+		http.SetOperation(ctx, OperationCommentCreateComment)
+		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+			return srv.CreateComment(ctx, req.(*CreateCommentRequest))
+		})
+		out, err := h(ctx, &in)
+		if err != nil {
+			return err
+		}
+		reply := out.(*CreateCommentReply)
+		return ctx.Result(200, reply)
+	}
 }
 
 func _Comment_ListComment0_HTTP_Handler(srv CommentHTTPServer) func(ctx http.Context) error {
@@ -72,6 +97,7 @@ func _Comment_ListLatestComment0_HTTP_Handler(srv CommentHTTPServer) func(ctx ht
 }
 
 type CommentHTTPClient interface {
+	CreateComment(ctx context.Context, req *CreateCommentRequest, opts ...http.CallOption) (rsp *CreateCommentReply, err error)
 	ListComment(ctx context.Context, req *ListCommentRequest, opts ...http.CallOption) (rsp *ListCommentReply, err error)
 	ListLatestComment(ctx context.Context, req *ListLatestCommentRequest, opts ...http.CallOption) (rsp *ListLatestCommentReply, err error)
 }
@@ -82,6 +108,19 @@ type CommentHTTPClientImpl struct {
 
 func NewCommentHTTPClient(client *http.Client) CommentHTTPClient {
 	return &CommentHTTPClientImpl{client}
+}
+
+func (c *CommentHTTPClientImpl) CreateComment(ctx context.Context, in *CreateCommentRequest, opts ...http.CallOption) (*CreateCommentReply, error) {
+	var out CreateCommentReply
+	pattern := "/api/comment"
+	path := binding.EncodeURL(pattern, in, false)
+	opts = append(opts, http.Operation(OperationCommentCreateComment))
+	opts = append(opts, http.PathTemplate(pattern))
+	err := c.cc.Invoke(ctx, "POST", path, in, &out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return &out, nil
 }
 
 func (c *CommentHTTPClientImpl) ListComment(ctx context.Context, in *ListCommentRequest, opts ...http.CallOption) (*ListCommentReply, error) {
