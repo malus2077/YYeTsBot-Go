@@ -5,7 +5,6 @@ import (
 	"YYeTsBot-Go/internal/biz"
 	"context"
 	"errors"
-	"fmt"
 	"github.com/go-kratos/kratos/v2/middleware/auth/jwt"
 )
 
@@ -65,8 +64,6 @@ func (s *UserService) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.
 	}
 
 	id, err := token.GetIssuer()
-	fmt.Println(token)
-
 	user, err := s.userUseCase.FindById(ctx, id)
 	if err != nil {
 		return nil, err

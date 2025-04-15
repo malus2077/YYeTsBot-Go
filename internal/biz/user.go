@@ -76,7 +76,7 @@ func (uc UserUseCase) UserGroup(context context.Context, userNames []string) (ma
 func (uc UserUseCase) Login(ctx context.Context, username, password string) (*User, error) {
 	passwordHash, err := PasswordHash(password)
 
-	user, err := uc.repo.FindUser(ctx, username, passwordHash)
+	user, err := uc.repo.FindUser(ctx, username, password)
 	if err != nil {
 		return nil, err
 	}

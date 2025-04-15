@@ -3,8 +3,14 @@ package data
 import (
 	"YYeTsBot-Go/internal/biz"
 	"context"
+	"crypto/sha256"
+	"crypto/subtle"
+	"encoding/base64"
 	"errors"
+	"fmt"
 	"go.mongodb.org/mongo-driver/v2/mongo"
+	"golang.org/x/crypto/pbkdf2"
+	"strconv"
 	"strings"
 
 	"github.com/go-kratos/kratos/v2/log"
@@ -90,10 +96,42 @@ func (u *userRepo) FindUser(ctx context.Context, username, password string) (*bi
 		return nil, err
 	}
 
-	if user.Password != password {
+	verify, err := VerifyPassword(password, user.Password)
+	if !verify {
 		return nil, errors.New("wrong password")
 	}
 	return &user, nil
+}
+
+// VerifyPassword verifies if the provided password matches the hashed value.
+func VerifyPassword(password, hashed string) (bool, error) {
+	parts := strings.Split(hashed, "$")
+	if len(parts) != 4 || parts[0] != "pbkdf2-sha256" {
+		return false, errors.New("invalid hashed password format")
+	}
+
+	iter, err := strconv.Atoi(parts[1])
+	if err != nil {
+		return false, fmt.Errorf("invalid iteration number: %w", err)
+	}
+
+	salt, err := base64.StdEncoding.DecodeString(parts[2])
+	if err != nil {
+		return false, fmt.Errorf("decode salt failed: %w", err)
+	}
+
+	storedHash, err := base64.StdEncoding.DecodeString(parts[3])
+	if err != nil {
+		return false, fmt.Errorf("decode stored hash failed: %w", err)
+	}
+
+	computedHash := pbkdf2.Key([]byte(password), salt, iter, len(storedHash), sha256.New)
+
+	if subtle.ConstantTimeCompare(computedHash, storedHash) == 1 {
+		return true, nil
+	}
+
+	return false, nil
 }
 
 // List implements biz.UserRepo.
