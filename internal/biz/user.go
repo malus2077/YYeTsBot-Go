@@ -1,6 +1,7 @@
 package biz
 
 import (
+	"YYeTsBot-Go/internal/conf"
 	"YYeTsBot-Go/internal/middleware"
 	"context"
 	"crypto/rand"
@@ -56,6 +57,7 @@ type UserRepo interface {
 type UserUseCase struct {
 	repo UserRepo
 	log  *log.Helper
+	conf *conf.Server
 }
 
 // 默认密码安全参数
@@ -65,8 +67,8 @@ const (
 	keyLength         = 32
 )
 
-func NewUserUseCase(repo UserRepo, logger log.Logger) *UserUseCase {
-	return &UserUseCase{repo: repo, log: log.NewHelper(logger)}
+func NewUserUseCase(repo UserRepo, logger log.Logger, conf *conf.Server) *UserUseCase {
+	return &UserUseCase{repo: repo, log: log.NewHelper(logger), conf: conf}
 }
 
 func (uc UserUseCase) UserGroup(context context.Context, userNames []string) (map[string]User, error) {
@@ -129,7 +131,7 @@ func (uc UserUseCase) GenerateToken(user *User) (string, error) {
 		"sub": user.UserName,
 	})
 
-	secretKey := []byte("your-secret-key")
+	secretKey := []byte(uc.conf.SecretKey)
 	// Sign and get the complete encoded token as a string using the secret
 	tokenString, err := token.SignedString(secretKey)
 

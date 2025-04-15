@@ -36,7 +36,7 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	commentRepo := data.NewCommentRepo(dataData, logger)
 	commentUsecase := biz.NewCommentUsecase(commentRepo, resourceRepo, logger)
 	userRepo := data.NewUserRepo(dataData, logger)
-	userUseCase := biz.NewUserUseCase(userRepo, logger)
+	userUseCase := biz.NewUserUseCase(userRepo, logger, confServer)
 	resourceService := service.NewResourceService(resourceUsecase, commentUsecase, userUseCase)
 	captchaRepo := data.NewCaptchaRepo(dataData, logger)
 	captchaUsecase := biz.NewCaptchaUsecase(captchaRepo, logger)
