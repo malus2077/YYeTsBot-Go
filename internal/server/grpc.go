@@ -15,7 +15,7 @@ import (
 )
 
 // NewGRPCServer new a gRPC server.
-func NewGRPCServer(c *conf.Server, greeter *service.GreeterService, resource *service.ResourceService, comment *service.CommentService, announcement *service.AnnouncementService, metricsService *service.MetricsService, adsense *service.AdsenseService, douban *service.DoubanService, captchaService *service.CaptchaService, userService *service.UserService, logger log.Logger) *grpc.Server {
+func NewGRPCServer(c *conf.Server, greeter *service.GreeterService, resource *service.ResourceService, comment *service.CommentService, announcement *service.AnnouncementService, metricsService *service.MetricsService, adsense *service.AdsenseService, douban *service.DoubanService, captchaService *service.CaptchaService, userService *service.UserService, notificationService *service.NotificationService, logger log.Logger) *grpc.Server {
 	var opts = []grpc.ServerOption{
 		grpc.Middleware(
 			recovery.Recovery(),
@@ -44,5 +44,6 @@ func NewGRPCServer(c *conf.Server, greeter *service.GreeterService, resource *se
 	ets.RegisterDoubanServer(srv, douban)
 	ets.RegisterCaptchaServer(srv, captchaService)
 	ets.RegisterUserServer(srv, userService)
+	ets.RegisterNotificationServer(srv, notificationService)
 	return srv
 }

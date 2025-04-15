@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package api.yyets.v1;
+import "google/api/annotations.proto";
+
+option go_package = "YYeTsBot-Go/api/yyets/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.yyets.v1";
+
+service Notification {
+	rpc CreateNotification (CreateNotificationRequest) returns (CreateNotificationReply);
+	rpc UpdateNotification (UpdateNotificationRequest) returns (UpdateNotificationReply);
+	rpc DeleteNotification (DeleteNotificationRequest) returns (DeleteNotificationReply);
+	rpc GetNotification (GetNotificationRequest) returns (GetNotificationReply){
+		option (google.api.http) = {
+			get: "/api/notification"
+		};
+	};
+	rpc ListNotification (ListNotificationRequest) returns (ListNotificationReply);
+}
+
+message CreateNotificationRequest {}
+message CreateNotificationReply {}
+
+message UpdateNotificationRequest {}
+message UpdateNotificationReply {}
+
+message DeleteNotificationRequest {}
+message DeleteNotificationReply {}
+
+message GetNotificationRequest {
+	int64 page = 1;
+	int64 size = 2;
+}
+message NotificationItem {
+	string browser = 1;
+	string content = 2;
+	string date = 3;
+	string id= 4;
+	string reply_to_content = 5 [json_name = "reply_to_content"];
+	string reply_to_id = 6 [json_name = "reply_to_id"];
+	string type = 7;
+	string username = 8;
+}
+message GetNotificationReply {
+	int32 read_count = 1 [json_name = "read_count"];
+	int32 unread_count = 2 [json_name = "unread_count"];
+	string username = 3;
+	repeated NotificationItem read_item = 4 [json_name = "read_item"];
+	repeated NotificationItem unread_item = 5 [json_name = "unread_item"];
+}
+
+message ListNotificationRequest {}
+message ListNotificationReply {}

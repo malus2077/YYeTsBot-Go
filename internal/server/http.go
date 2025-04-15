@@ -29,7 +29,7 @@ func NewWhiteListMatcher() selector.MatchFunc {
 }
 
 // NewHTTPServer new an HTTP server.
-func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, resource *service.ResourceService, comment *service.CommentService, announcement *service.AnnouncementService, metricsService *service.MetricsService, adsense *service.AdsenseService, douban *service.DoubanService, captchaService *service.CaptchaService, userService *service.UserService, logger log.Logger) *http.Server {
+func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, resource *service.ResourceService, comment *service.CommentService, announcement *service.AnnouncementService, metricsService *service.MetricsService, adsense *service.AdsenseService, douban *service.DoubanService, captchaService *service.CaptchaService, userService *service.UserService, notificationService *service.NotificationService, logger log.Logger) *http.Server {
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),
@@ -60,5 +60,6 @@ func NewHTTPServer(c *conf.Server, greeter *service.GreeterService, resource *se
 	ets.RegisterDoubanHTTPServer(srv, douban)
 	ets.RegisterCaptchaHTTPServer(srv, captchaService)
 	ets.RegisterUserHTTPServer(srv, userService)
+	ets.RegisterNotificationHTTPServer(srv, notificationService)
 	return srv
 }

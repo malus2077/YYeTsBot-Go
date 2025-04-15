@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: api/yyets/v1/comment.proto
+// source: yyets/v1/comment.proto
 
 package v1
 
@@ -307,5 +307,5 @@ var Comment_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/yyets/v1/comment.proto",
+	Metadata: "yyets/v1/comment.proto",
 }

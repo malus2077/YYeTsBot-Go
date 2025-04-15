@@ -3,73 +3,19 @@
 
 openapi: 3.0.3
 info:
-    title: Comment API
+    title: Notification API
     version: 0.0.1
 paths:
-    /api/comment:
+    /api/notification:
         get:
             tags:
-                - Comment
-            operationId: Comment_ListComment
+                - Notification
+            operationId: Notification_GetNotification
             parameters:
-                - name: resourceId
-                  in: query
-                  schema:
-                    type: string
-                - name: size
-                  in: query
-                  schema:
-                    type: string
                 - name: page
                   in: query
                   schema:
                     type: string
-                - name: sort
-                  in: query
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/ListCommentReply'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-        post:
-            tags:
-                - Comment
-            operationId: Comment_CreateComment
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/CreateCommentRequest'
-                required: true
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/CreateCommentReply'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
-    /api/comment/newest:
-        get:
-            tags:
-                - Comment
-            operationId: Comment_ListLatestComment
-            parameters:
                 - name: size
                   in: query
                   schema:
@@ -80,7 +26,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ListLatestCommentReply'
+                                $ref: '#/components/schemas/GetNotificationReply'
                 default:
                     description: Default error response
                     content:
@@ -89,51 +35,25 @@ paths:
                                 $ref: '#/components/schemas/Status'
 components:
     schemas:
-        CommentItem:
+        GetNotificationReply:
             type: object
             properties:
+                read_count:
+                    type: integer
+                    format: int32
+                unread_count:
+                    type: integer
+                    format: int32
                 username:
                     type: string
-                date:
-                    type: string
-                browser:
-                    type: string
-                content:
-                    type: string
-                resourceId:
-                    type: string
-                type:
-                    type: string
-                id:
-                    type: string
-                group:
+                read_item:
                     type: array
                     items:
-                        type: string
-                hasAvatar:
-                    type: boolean
-                cnname:
-                    type: string
-        CreateCommentReply:
-            type: object
-            properties:
-                message:
-                    type: string
-                statusCode:
-                    type: string
-        CreateCommentRequest:
-            type: object
-            properties:
-                resourceId:
-                    type: string
-                captcha:
-                    type: string
-                id:
-                    type: string
-                content:
-                    type: string
-                commentId:
-                    type: string
+                        $ref: '#/components/schemas/NotificationItem'
+                unread_item:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/NotificationItem'
         GoogleProtobufAny:
             type: object
             properties:
@@ -142,26 +62,25 @@ components:
                     description: The type of the serialized message.
             additionalProperties: true
             description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-        ListCommentReply:
+        NotificationItem:
             type: object
             properties:
-                count:
+                browser:
                     type: string
-                data:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/CommentItem'
-                resourceId:
+                content:
                     type: string
-        ListLatestCommentReply:
-            type: object
-            properties:
-                count:
+                date:
                     type: string
-                data:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/CommentItem'
+                id:
+                    type: string
+                reply_to_content:
+                    type: string
+                reply_to_id:
+                    type: string
+                type:
+                    type: string
+                username:
+                    type: string
         Status:
             type: object
             properties:
@@ -179,4 +98,4 @@ components:
                     description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
             description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
 tags:
-    - name: Comment
+    - name: Notification

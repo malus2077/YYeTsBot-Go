@@ -29,9 +29,9 @@ type ResourceDataInfo struct {
 	Enname        string                 `protobuf:"bytes,3,opt,name=enname,proto3" json:"enname,omitempty"`
 	Aliasname     string                 `protobuf:"bytes,4,opt,name=aliasname,proto3" json:"aliasname,omitempty"`
 	Channel       string                 `protobuf:"bytes,5,opt,name=channel,proto3" json:"channel,omitempty"`
-	ChannelCn     string                 `protobuf:"bytes,6,opt,name=channel_cn,json=channelCn,proto3" json:"channel_cn,omitempty"`
+	ChannelCn     string                 `protobuf:"bytes,6,opt,name=channel_cn,proto3" json:"channel_cn,omitempty"`
 	Area          string                 `protobuf:"bytes,7,opt,name=area,proto3" json:"area,omitempty"`
-	ShowType      string                 `protobuf:"bytes,8,opt,name=show_type,json=showType,proto3" json:"show_type,omitempty"`
+	ShowType      string                 `protobuf:"bytes,8,opt,name=show_type,proto3" json:"show_type,omitempty"`
 	Expire        string                 `protobuf:"bytes,9,opt,name=expire,proto3" json:"expire,omitempty"`
 	Views         int64                  `protobuf:"varint,10,opt,name=views,proto3" json:"views,omitempty"`
 	Year          []int64                `protobuf:"varint,11,rep,packed,name=year,proto3" json:"year,omitempty"`
@@ -149,7 +149,7 @@ func (x *ResourceDataInfo) GetYear() []int64 {
 type ResourceFile struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Way           string                 `protobuf:"bytes,1,opt,name=way,proto3" json:"way,omitempty"`
-	WayCn         string                 `protobuf:"bytes,2,opt,name=way_cn,json=wayCn,proto3" json:"way_cn,omitempty"`
+	WayCn         string                 `protobuf:"bytes,2,opt,name=way_cn,proto3" json:"way_cn,omitempty"`
 	Address       string                 `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
 	Passwd        string                 `protobuf:"bytes,4,opt,name=passwd,proto3" json:"passwd,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -216,11 +216,11 @@ func (x *ResourceFile) GetPasswd() string {
 
 type ResourceSeasonItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ItemId        string                 `protobuf:"bytes,1,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	ItemId        string                 `protobuf:"bytes,1,opt,name=item_id,json=itemid,proto3" json:"item_id,omitempty"`
 	Episode       string                 `protobuf:"bytes,2,opt,name=episode,proto3" json:"episode,omitempty"`
 	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	Size          string                 `protobuf:"bytes,4,opt,name=size,proto3" json:"size,omitempty"`
-	YyetsTrans    int64                  `protobuf:"varint,5,opt,name=yyets_trans,json=yyetsTrans,proto3" json:"yyets_trans,omitempty"`
+	YyetsTrans    int64                  `protobuf:"varint,5,opt,name=yyets_trans,proto3" json:"yyets_trans,omitempty"`
 	Dateline      string                 `protobuf:"bytes,6,opt,name=dateline,proto3" json:"dateline,omitempty"`
 	Files         []*ResourceFile        `protobuf:"bytes,7,rep,name=files,proto3" json:"files,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -352,8 +352,8 @@ func (x *ResourceSeasonList) GetItems() []*ResourceSeasonItem {
 
 type ResourceSeason struct {
 	state         protoimpl.MessageState         `protogen:"open.v1"`
-	SeasonNum     string                         `protobuf:"bytes,1,opt,name=season_num,json=seasonNum,proto3" json:"season_num,omitempty"`
-	SeasonCn      string                         `protobuf:"bytes,2,opt,name=season_cn,json=seasonCn,proto3" json:"season_cn,omitempty"`
+	SeasonNum     string                         `protobuf:"bytes,1,opt,name=season_num,proto3" json:"season_num,omitempty"`
+	SeasonCn      string                         `protobuf:"bytes,2,opt,name=season_cn,proto3" json:"season_cn,omitempty"`
 	Items         map[string]*ResourceSeasonList `protobuf:"bytes,3,rep,name=items,proto3" json:"items,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	Formats       []string                       `protobuf:"bytes,4,rep,name=formats,proto3" json:"formats,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1394,41 +1394,42 @@ var File_yyets_v1_resource_proto protoreflect.FileDescriptor
 
 const file_yyets_v1_resource_proto_rawDesc = "" +
 	"\n" +
-	"\x17yyets/v1/resource.proto\x12\fapi.yyets.v1\x1a\x1cgoogle/api/annotations.proto\"\x9c\x02\n" +
+	"\x17yyets/v1/resource.proto\x12\fapi.yyets.v1\x1a\x1cgoogle/api/annotations.proto\"\x9e\x02\n" +
 	"\x10ResourceDataInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
 	"\x06cnname\x18\x02 \x01(\tR\x06cnname\x12\x16\n" +
 	"\x06enname\x18\x03 \x01(\tR\x06enname\x12\x1c\n" +
 	"\taliasname\x18\x04 \x01(\tR\taliasname\x12\x18\n" +
-	"\achannel\x18\x05 \x01(\tR\achannel\x12\x1d\n" +
+	"\achannel\x18\x05 \x01(\tR\achannel\x12\x1e\n" +
 	"\n" +
-	"channel_cn\x18\x06 \x01(\tR\tchannelCn\x12\x12\n" +
-	"\x04area\x18\a \x01(\tR\x04area\x12\x1b\n" +
-	"\tshow_type\x18\b \x01(\tR\bshowType\x12\x16\n" +
+	"channel_cn\x18\x06 \x01(\tR\n" +
+	"channel_cn\x12\x12\n" +
+	"\x04area\x18\a \x01(\tR\x04area\x12\x1c\n" +
+	"\tshow_type\x18\b \x01(\tR\tshow_type\x12\x16\n" +
 	"\x06expire\x18\t \x01(\tR\x06expire\x12\x14\n" +
 	"\x05views\x18\n" +
 	" \x01(\x03R\x05views\x12\x12\n" +
-	"\x04year\x18\v \x03(\x03R\x04year\"i\n" +
+	"\x04year\x18\v \x03(\x03R\x04year\"j\n" +
 	"\fResourceFile\x12\x10\n" +
-	"\x03way\x18\x01 \x01(\tR\x03way\x12\x15\n" +
-	"\x06way_cn\x18\x02 \x01(\tR\x05wayCn\x12\x18\n" +
+	"\x03way\x18\x01 \x01(\tR\x03way\x12\x16\n" +
+	"\x06way_cn\x18\x02 \x01(\tR\x06way_cn\x12\x18\n" +
 	"\aaddress\x18\x03 \x01(\tR\aaddress\x12\x16\n" +
-	"\x06passwd\x18\x04 \x01(\tR\x06passwd\"\xde\x01\n" +
+	"\x06passwd\x18\x04 \x01(\tR\x06passwd\"\xdf\x01\n" +
 	"\x12ResourceSeasonItem\x12\x17\n" +
-	"\aitem_id\x18\x01 \x01(\tR\x06itemId\x12\x18\n" +
+	"\aitem_id\x18\x01 \x01(\tR\x06itemid\x12\x18\n" +
 	"\aepisode\x18\x02 \x01(\tR\aepisode\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x12\n" +
-	"\x04size\x18\x04 \x01(\tR\x04size\x12\x1f\n" +
-	"\vyyets_trans\x18\x05 \x01(\x03R\n" +
-	"yyetsTrans\x12\x1a\n" +
+	"\x04size\x18\x04 \x01(\tR\x04size\x12 \n" +
+	"\vyyets_trans\x18\x05 \x01(\x03R\vyyets_trans\x12\x1a\n" +
 	"\bdateline\x18\x06 \x01(\tR\bdateline\x120\n" +
 	"\x05files\x18\a \x03(\v2\x1a.api.yyets.v1.ResourceFileR\x05files\"L\n" +
 	"\x12ResourceSeasonList\x126\n" +
-	"\x05items\x18\x01 \x03(\v2 .api.yyets.v1.ResourceSeasonItemR\x05items\"\x81\x02\n" +
-	"\x0eResourceSeason\x12\x1d\n" +
+	"\x05items\x18\x01 \x03(\v2 .api.yyets.v1.ResourceSeasonItemR\x05items\"\x83\x02\n" +
+	"\x0eResourceSeason\x12\x1e\n" +
 	"\n" +
-	"season_num\x18\x01 \x01(\tR\tseasonNum\x12\x1b\n" +
-	"\tseason_cn\x18\x02 \x01(\tR\bseasonCn\x12=\n" +
+	"season_num\x18\x01 \x01(\tR\n" +
+	"season_num\x12\x1c\n" +
+	"\tseason_cn\x18\x02 \x01(\tR\tseason_cn\x12=\n" +
 	"\x05items\x18\x03 \x03(\v2'.api.yyets.v1.ResourceSeason.ItemsEntryR\x05items\x12\x18\n" +
 	"\aformats\x18\x04 \x03(\tR\aformats\x1aZ\n" +
 	"\n" +

@@ -36,26 +36,26 @@ message ResourceDataInfo {
 	string enname = 3;
 	string aliasname = 4;
 	string channel = 5;
-	string channel_cn = 6;
+	string channel_cn = 6 [json_name = "channel_cn"];
 	string area = 7;
-	string show_type = 8;
+	string show_type = 8 [json_name = "show_type"];
 	string expire = 9;
 	int64 views = 10;
 	repeated int64 year = 11;
 }
 message ResourceFile {
 	string way = 1;
-	string way_cn = 2;
+	string way_cn = 2 [json_name = "way_cn"];
 	string address = 3;
 	string passwd = 4;
 }
 
 message ResourceSeasonItem {
-	string item_id = 1;
+	string item_id = 1 [json_name = "itemid"];
 	string episode = 2;
 	string name = 3;
 	string size = 4;
-	int64 yyets_trans = 5;
+	int64 yyets_trans = 5 [json_name = "yyets_trans"];
 	string dateline = 6;
 	repeated ResourceFile files = 7;
 }
@@ -64,8 +64,8 @@ message ResourceSeasonList {
 	repeated ResourceSeasonItem items = 1;
 }
 message ResourceSeason{
-	string season_num = 1;
-	string season_cn = 2;
+	string season_num = 1 [json_name = "season_num"];
+	string season_cn = 2 [json_name = "season_cn"];
 	map<string, ResourceSeasonList> items = 3;
 	repeated string formats = 4;
 }
