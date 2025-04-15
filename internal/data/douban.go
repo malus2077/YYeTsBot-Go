@@ -43,6 +43,7 @@ func (r *doubanRepo) FindByResourceId(ctx context.Context, resourceId int64) (*b
 func (r *doubanRepo) Insert(ctx context.Context, resourceName string, resourceId int64) (*biz.Douban, error) {
 	//todo: 性能优化
 	douban := r.data.crawler.Douban.FetchMediaInfo(resourceName)
+	douban.Id = bson.NewObjectID()
 	douban.ResourceId = resourceId
 
 	if douban == nil {
