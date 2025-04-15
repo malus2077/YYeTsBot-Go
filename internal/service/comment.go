@@ -102,6 +102,7 @@ func (s *CommentService) ListComment(ctx context.Context, req *pb.ListCommentReq
 		}
 
 		item := &pb.CommentItem{
+			Username:  comment.Username,
 			Browser:   comment.Browser,
 			Content:   comment.Content,
 			Date:      comment.Date,
@@ -143,6 +144,7 @@ func (s *CommentService) ListLatestComment(ctx context.Context, req *pb.ListLate
 		}
 
 		item := &pb.CommentItem{
+			Username:  comment.Username,
 			Browser:   comment.Browser,
 			Content:   comment.Content,
 			Date:      comment.Date,

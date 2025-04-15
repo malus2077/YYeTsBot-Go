@@ -43,9 +43,10 @@ func (r *commentRepo) Save(ctx context.Context, comment *biz.Comment) (*biz.Comm
 
 func (r *commentRepo) List(ctx context.Context, resourceId, pageNo, pageSize int64, sort string) ([]*biz.Comment, int64, error) {
 	sorting := -1
-	if sort != "newest" {
+	if sort == "oldest" {
 		sorting = 1
 	}
+
 	collection := r.data.db.Collection("comment")
 	condition := bson.M{
 		"resource_id": resourceId,

@@ -73,5 +73,7 @@ func (uc *CommentUsecase) Create(ctx context.Context, comment *Comment) (*Commen
 		}
 	}
 
+	// todo: user-agent mw
+	comment.Browser = "browser"
 	return uc.commentRepo.Save(ctx, comment)
 }
