@@ -1,51 +1,100 @@
-# Kratos Project Template
+# YYeTsBot-Go
 
-## Install Kratos
-```
-go install github.com/go-kratos/kratos/cmd/kratos/v2@latest
-```
-## Create a service
-```
-# Create a template project
-kratos new server
+[![Go Report Card](https://goreportcard.com/badge/github.com/malus2077/YYeTsBot-Go)](https://goreportcard.com/report/github.com/yourusername/YYeTsBot-Go)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-cd server
-# Add a proto template
-kratos proto add api/server/server.proto
-# Generate the proto code
-kratos proto client api/server/server.proto
-# Generate the source code of service by proto file
-kratos proto server api/server/server.proto -t internal/service
+`YYeTsBot-Go` is the Go implementation of [YYeTsBot](https://github.com/tgbot-collection/YYeTsBot), a project for backing up resources from YYeTs and user shares. Built with the [Kratos](https://go-kratos.dev) framework, it provides a modern backend service.
 
-go generate ./...
-go build -o ./bin/ ./...
-./bin/server -conf ./configs
-```
-## Generate other auxiliary files by Makefile
-```
-# Download and update dependencies
-make init
-# Generate API files (include: pb.go, http, grpc, validate, swagger) by proto file
-make api
-# Generate all files
-make all
-```
-## Automated Initialization (wire)
-```
-# install wire
-go get github.com/google/wire/cmd/wire
+## ✨ Features
 
-# generate wire
-cd cmd/server
-wire
+* **HTTP + gRPC** APIs generated from Protobuf.
+* **JWT** middleware for authentication.
+* **Redis** for caching.
+* **MongoDB** for data storage.
+* **Wire** for dependency injection.
+* **Colly** for web scraping.
+
+## 🚀 Getting Started
+
+### ✅ Prerequisites
+
+* Go **1.24+**
+* MongoDB **≥ 7.0**
+* Redis **≥ 7.0**
+* (Optional) Docker + Docker Compose
+
+### Run Locally
+
+1.  **Clone:**
+    ```bash
+    git clone https://github.com/malus2077/YYeTsBot-Go.git
+    cd YYeTsBot-Go
+    ```
+
+2.  **Initialize:** (Installs deps, generates code)
+    ```bash
+    make init
+    ```
+
+3.  **Configure:**
+    * Edit `configs/config.yaml` with your DB, Redis, and JWT settings.
+
+4.  **Run:** (Starts dev server)
+    ```bash
+    kratos run
+    ```
+
+Server runs on:
+* **HTTP:** `http://localhost:8000`
+* **gRPC:** `localhost:9000`
+
+## 🐳 Docker
+
+1.  **Build Image:**
+    ```bash
+    docker build -t yyetsbot-go:latest .
+    ```
+
+2.  **Run Container:**
+    ```bash
+    docker run --rm \
+           -p 8000:8000 \
+           -p 9000:9000 \
+           -v $(pwd)/configs:/data/conf \
+           --name yyetsbot-go-app \
+           yyetsbot-go:latest
+    ```
+    * Mount your local `configs` directory to `/data/conf` in the container. Use an absolute path for `$(pwd)/configs`.
+
+## ⚙️ Configuration
+
+* Configure the application via YAML files in the `configs/` directory.
+* Key settings: `database`, `redis`, `server` ports, `auth.jwt.secret`.
+* Environment variables might override YAML values (check Kratos setup).
+
+## 🏗️ Project Structure
+
+```
+.
+├── api/            # Protobuf definitions (.proto)
+├── cmd/            # Main application entrypoint
+├── configs/        # Configuration files
+├── internal/       # Core application code
+│   ├── biz/        # Business logic
+│   ├── data/       # Data access (DB, cache)
+│   └── service/    # API service implementations
+├── Makefile        # Build commands
+├── go.mod          # Go modules
+└── Dockerfile      # Docker build file
 ```
 
-## Docker
-```bash
-# build
-docker build -t <your-docker-image-name> .
+## 🤝 Contributing
 
-# run
-docker run --rm -p 8000:8000 -p 9000:9000 -v </path/to/your/configs>:/data/conf <your-docker-image-name>
-```
+Contributions are welcome!
 
+* Report bugs or suggest features via [Issues](https://github.com/malus2077/YYeTsBot-Go/issues).
+* Submit code changes via [Pull Requests](https://github.com/malus2077/YYeTsBot-Go/pulls).
+
+## 📄 License
+
+Licensed under the **Apache License 2.0**. See the [LICENSE](LICENSE) file for details.
