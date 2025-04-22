@@ -5,6 +5,8 @@
 
 `YYeTsBot-Go` is the Go implementation of [YYeTsBot](https://github.com/tgbot-collection/YYeTsBot), a project for backing up resources from YYeTs and user shares. Built with the [Kratos](https://go-kratos.dev) framework, it provides a modern backend service.
 
+> 🌐 [Live Demo](http://117.72.37.235:30080/)
+
 ## ✨ Features
 
 * **HTTP + gRPC** APIs generated from Protobuf.
